@@ -1,11 +1,17 @@
 public class triangle {
     public static void main(String[] args){
-        int i = 1;
+        int N = Integer.parseInt(args[0]);
+        drawTriangle(N);
+    }
+    
+    public static void drawTriangle(int N){
+        int i = 0;
         String a = "*";
-        while (i < 6){
+        while (i < N){
             System.out.println(a);
             a += "*";
             i += 1;
         }
     }
 }
+
