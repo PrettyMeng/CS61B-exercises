@@ -49,6 +49,36 @@ public class Body {
         return F_y;
     }
 
+    public double calcNetForceExertedByX(Body[] allBodys){
+        double F_x = 0;
+        for (Body b: allBodys){
+            if (!b.equals(this)) {
+                F_x += calcForceExertedByX(b);
+            }
+        }
+        return F_x;
+    }
+
+    public double calcNetForceExertedByY(Body[] allBodys){
+        double F_y = 0;
+        for (Body b: allBodys){
+            if (!b.equals(this)) {
+                F_y += calcForceExertedByY(b);
+            }
+        }
+        return F_y;
+    }
+
+    public void update(double dt, double fX, double fY){
+        double aX, aY;
+        aX = fX / mass;
+        aY = fY / mass;
+        xxVel += aX * dt;
+        yyVel += aY * dt;
+        xxPos += xxVel * dt;
+        yyPos += yyVel * dt;
+    }
+
     public static void main(String[] args){
 
     }
