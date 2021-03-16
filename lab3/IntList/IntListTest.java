@@ -21,6 +21,18 @@ public class IntListTest {
     }
 
     @Test
+    public void testReverse(){
+        IntList L = IntList.of(1, 2, 3);
+        IntList L_tmp = L;
+        IntList reversed = IntList.reverse(L);
+        assertEquals(IntList.of(3, 2, 1), reversed);
+        assertNotEquals(L, reversed);
+        IntList L2 = IntList.of();
+        IntList.reverse(L2);
+        assertEquals(null, L2);
+    }
+
+    @Test
     public void testdSquareList() {
         IntList L = IntList.of(1, 2, 3);
         IntList.dSquareList(L);
