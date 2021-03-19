@@ -8,18 +8,18 @@ public class LinkedListDeque<T> {
     }
 
     //@source https://www.youtube.com/watch?v=JNroRiEG7U4
-    public LinkedListDeque(LinkedListDeque other) {
-        sentinal = new Node<T>(null, sentinal, sentinal);
-        size = 0;
-        int s = other.size();
-        for (int i = 0; i < s; i++) {
-            //  Wierd! Why do I need a type transition here??
-            // Could be put in the signature as well: LinkedListDeque<T> Other
-            T item = (T) other.get(i);
-            this.addFirst(item);
-            size++;
-        }
-    }
+//    public LinkedListDeque(LinkedListDeque other) {
+//        sentinal = new Node<T>(null, sentinal, sentinal);
+//        size = 0;
+//        int s = other.size();
+//        for (int i = 0; i < s; i++) {
+//            //  Wierd! Why do I need a type transition here??
+//            // Could be put in the signature as well: LinkedListDeque<T> Other
+//            T item = (T) other.get(i);
+//            this.addFirst(item);
+//            size++;
+//        }
+//    }
 
     private class Node<TT> {
         private TT item;
@@ -119,7 +119,7 @@ public class LinkedListDeque<T> {
         return item;
     }
 
-    public T getRecursive(int index, Node<T> p) {
+    private T getRecursive(int index, Node<T> p) {
         if (index == 0) {
             return p.item;
         }   else {

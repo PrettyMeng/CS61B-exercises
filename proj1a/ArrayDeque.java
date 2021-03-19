@@ -109,10 +109,11 @@ public class ArrayDeque<T> {
 
     /** If no such item exists, returns null. */
     public T get(int index) {
-        if (nextLast == nextFirst) {
+        if (size == 0) {
             return null;
         }
-        return items[nextFirst + 1 + index];
+        index = fixIndex(nextFirst + 1 + index);
+        return items[index];
     }
 
 
