@@ -48,7 +48,7 @@ public class ArrayDeque<T> {
         size--;
         nextFirst = fixIndex(nextFirst);
         if (size <= items.length / 4) {
-            resize(size / 2);
+            resize(items.length / 2);
         }
         return items[targetPosition];
     }
@@ -60,7 +60,7 @@ public class ArrayDeque<T> {
         size--;
         nextLast = fixIndex(nextLast);
         if (size <= items.length / 4) {
-            resize(size / 2);
+            resize(items.length / 2);
         }
         return items[targetPosition];
     }
