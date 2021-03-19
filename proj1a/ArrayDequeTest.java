@@ -50,6 +50,17 @@ public class ArrayDequeTest {
         lld1.addLast("back");
         passed = checkSize(3, lld1.size()) && passed;
 
+        lld1.addLast("back");
+
+        lld1.addFirst("front");
+        lld1.addFirst("front");
+        lld1.addFirst("front");
+        lld1.addFirst("front");
+        lld1.addFirst("front");
+        lld1.addFirst("front");
+
+
+
         System.out.println("Printing out deque: ");
         lld1.printDeque();
 
@@ -93,14 +104,12 @@ public class ArrayDequeTest {
 
         System.out.println(lld1.get(0));
 //        System.out.println(lld1.getRecursive(0));
-
-
     }
 
     public static void main(String[] args) {
         System.out.println("Running tests.\n");
         addIsEmptySizeTest();
-        addRemoveTest();
-        GetTest();
+//        addRemoveTest();
+//        GetTest();
     }
 }

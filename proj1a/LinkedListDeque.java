@@ -22,11 +22,11 @@ public class LinkedListDeque<T> {
     }
 
     private class Node<TT> {
-        public TT item;
-        public Node<TT> next;
-        public Node<TT> prev;
+        private TT item;
+        private Node<TT> next;
+        private Node<TT> prev;
 
-        public Node(TT i, Node n, Node p) {
+        Node(TT i, Node n, Node p) {
             item = i;
             next = n;
             prev = p;
@@ -66,9 +66,8 @@ public class LinkedListDeque<T> {
     public boolean isEmpty() {
         if (size == 0) {
             return true;
-        }   else {
-            return false;
         }
+        return false;
     }
 
     public void printDeque() {

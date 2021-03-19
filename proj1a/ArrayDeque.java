@@ -11,13 +11,12 @@ public class ArrayDeque<T> {
         nextFirst = 3;
     }
 
-    private int fix_index(int index) {
-            if (index < 0) {
-                index += items.length;
-            }
-            else if (index >= items.length) {
-                index -= items.length;
-            }
+    private int fixIndex(int index) {
+        if (index < 0) {
+            index += items.length;
+        }  else if (index >= items.length) {
+            index -= items.length;
+        }
 
         return index;
     }
@@ -26,8 +25,9 @@ public class ArrayDeque<T> {
         items[nextFirst] = item;
         nextFirst--;
         size++;
-        if (size < items.length) {
-            nextFirst = fix_index(nextFirst);
+        nextFirst = fixIndex(nextFirst);
+        if (size == items.length) {
+            resize(size * 4);
         }
     }
 
@@ -35,26 +35,33 @@ public class ArrayDeque<T> {
         items[nextLast] = item;
         nextLast++;
         size++;
-        if (size < items.length) {
-            nextLast = fix_index(nextLast);
+        nextLast = fixIndex(nextLast);
+        if (size == items.length) {
+            resize(size * 4);
         }
     }
 
     public T removeFirst() {
         int targetPosition = nextFirst + 1;
-        targetPosition = fix_index(targetPosition);
+        targetPosition = fixIndex(targetPosition);
         nextFirst++;
         size--;
-        nextFirst = fix_index(nextFirst);
+        nextFirst = fixIndex(nextFirst);
+        if (size <= items.length / 4) {
+            resize(size / 2);
+        }
         return items[targetPosition];
     }
 
     public T removeLast() {
         int targetPosition = nextLast - 1;
-        targetPosition = fix_index(targetPosition);
+        targetPosition = fixIndex(targetPosition);
         nextLast--;
         size--;
-        nextLast = fix_index(nextLast);
+        nextLast = fixIndex(nextLast);
+        if (size <= items.length / 4) {
+            resize(size / 2);
+        }
         return items[targetPosition];
     }
 
@@ -78,6 +85,25 @@ public class ArrayDeque<T> {
                 position -= items.length;
             }
         }
+    }
+
+    private void resize(int newSize) {
+        /** nextFirst==nextLast means the deque is full, we need to enlarge.*/
+        if (nextFirst >= nextLast - 1) {
+            T[] newItems = (T[]) new Object[newSize];
+            System.arraycopy(items, nextFirst + 1, newItems, 0, size - nextFirst - 1);
+            System.arraycopy(items, 0, newItems, size - nextFirst - 1, nextLast);
+            nextLast = size;
+            nextFirst = newSize - 1;
+            items = newItems;
+        }   else {
+            T[] newItems = (T[]) new Object[newSize];
+            System.arraycopy(items, nextFirst + 1, newItems, 0, nextLast - nextFirst - 1);
+            nextLast = size;
+            nextFirst = newSize - 1;
+            items = newItems;
+        }
+
     }
 
 

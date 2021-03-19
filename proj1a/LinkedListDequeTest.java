@@ -81,7 +81,7 @@ public class LinkedListDequeTest {
 
 	}
 
-	public static void GetTest() {
+	public static void getTest() {
 
 		System.out.println("Running get test.");
 
@@ -104,6 +104,6 @@ public class LinkedListDequeTest {
 		System.out.println("Running tests.\n");
 		addIsEmptySizeTest();
 		addRemoveTest();
-		GetTest();
+		getTest();
 	}
 } 
