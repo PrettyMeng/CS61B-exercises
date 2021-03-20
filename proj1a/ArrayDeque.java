@@ -35,20 +35,20 @@ public class ArrayDeque<T> {
         size++;
         items[nextLast] = item;
         nextLast++;
+        nextLast = fixIndex(nextLast);
         if (size == items.length) {
             resize(size * 4);
         }
-        nextLast = fixIndex(nextLast);
     }
 
     public T removeFirst() {
         if (size > 0) {
             size--;
+            nextFirst++;
+            nextFirst = fixIndex(nextFirst);
             if (size <= items.length / 4 && items.length > 16) {
                 resize(items.length / 2);
             }
-            nextFirst++;
-            nextFirst = fixIndex(nextFirst);
             return items[nextFirst];
         }   else {
             return null;
@@ -58,11 +58,11 @@ public class ArrayDeque<T> {
     public T removeLast() {
         if (size > 0) {
             size--;
+            nextLast--;
+            nextLast = fixIndex(nextLast);
             if (size <= items.length / 4 && items.length > 16) {
                 resize(items.length / 2);
             }
-            nextLast--;
-            nextLast = fixIndex(nextLast);
             return items[nextLast];
         }   else {
             return null;
@@ -114,7 +114,7 @@ public class ArrayDeque<T> {
 
     /** If no such item exists, returns null. */
     public T get(int index) {
-        if (size == 0) {
+        if (size == 0 || index >= size) {
             return null;
         }
         index = fixIndex(nextFirst + 1 + index);
