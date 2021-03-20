@@ -77,6 +77,24 @@ public class ArrayDequeTest {
 
     public static void removeLastTest() {
         ArrayDeque<Integer> lld1 = new ArrayDeque<Integer>();
+        lld1.addFirst(0);
+        lld1.addFirst(1);
+        lld1.addFirst(2);
+        lld1.addFirst(3);
+        lld1.addFirst(4);
+        lld1.addFirst(5);
+        lld1.addFirst(6);
+        lld1.addFirst(7);
+//        lld1.addLast(8);
+//        lld1.addLast(9);
+        int x1 = lld1.removeFirst();
+        int x2 = lld1.removeFirst();
+        int x3 = lld1.removeFirst();
+        int x4 = lld1.removeFirst();
+        int x5 = lld1.removeFirst();
+        int x6 = lld1.removeFirst();
+        int x7 = lld1.removeFirst();
+        int x8 = lld1.removeFirst();
         lld1.addLast(0);
         lld1.addLast(1);
         lld1.addLast(2);
@@ -85,10 +103,24 @@ public class ArrayDequeTest {
         lld1.addLast(5);
         lld1.addLast(6);
         lld1.addLast(7);
+
+//        System.out.println(lld1.removeFirst());
+    }
+
+    public static void nullTest() {
+        ArrayDeque<Integer> lld1 = new ArrayDeque<Integer>();
+        lld1.addFirst(0);
+        lld1.addFirst(1);
+        lld1.addFirst(2);
+        lld1.addFirst(3);
+        lld1.addFirst(4);
+        lld1.addFirst(5);
+        lld1.addFirst(6);
+        lld1.addFirst(7);
 //        lld1.addLast(8);
 //        lld1.addLast(9);
-        int x2 = lld1.removeFirst();
-        int x1 = lld1.removeLast();
+        int x1 = lld1.removeFirst();
+        int x2 = lld1.removeLast();
 
 //        System.out.println(lld1.removeFirst());
     }
@@ -137,5 +169,6 @@ public class ArrayDequeTest {
 //        addRemoveTest();
 //        getTest();
         removeLastTest();
+        nullTest();
     }
 }

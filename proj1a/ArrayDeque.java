@@ -49,7 +49,6 @@ public class ArrayDeque<T> {
             T firstItem = items[nextFirst];
             if (size <= items.length / 4 && items.length > 16) {
                 resize(items.length / 2);
-                nextFirst = fixIndex(nextFirst + 1);
             }
             return firstItem;
 
@@ -66,7 +65,6 @@ public class ArrayDeque<T> {
             T lastItem = items[nextLast];
             if (size <= items.length / 4 && items.length > 16) {
                 resize(items.length / 2);
-                nextLast = fixIndex(nextLast - 1);
             }
             return lastItem;
         }   else {
