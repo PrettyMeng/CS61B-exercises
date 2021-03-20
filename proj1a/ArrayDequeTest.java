@@ -79,16 +79,18 @@ public class ArrayDequeTest {
         ArrayDeque<Integer> lld1 = new ArrayDeque<Integer>();
         lld1.addLast(0);
         lld1.addLast(1);
-        int x1 = lld1.removeFirst();
+        lld1.addLast(2);
         lld1.addLast(3);
         lld1.addLast(4);
         lld1.addLast(5);
         lld1.addLast(6);
         lld1.addLast(7);
-        lld1.addLast(8);
-        lld1.addLast(9);
-//        int x2 = lld1.removeFirst();
-        System.out.println(lld1.removeFirst());
+//        lld1.addLast(8);
+//        lld1.addLast(9);
+        int x2 = lld1.removeFirst();
+        int x1 = lld1.removeLast();
+
+//        System.out.println(lld1.removeFirst());
     }
 
     /** Adds an item, then removes an item, and ensures that dll is empty afterwards. */
