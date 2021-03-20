@@ -109,14 +109,16 @@ public class ArrayDequeTest {
 
     public static void nullTest() {
         ArrayDeque<Integer> lld1 = new ArrayDeque<Integer>();
-        lld1.addFirst(0);
-        lld1.addFirst(1);
-        lld1.addFirst(2);
-        lld1.addFirst(3);
-        lld1.addFirst(4);
-        lld1.addFirst(5);
-        lld1.addFirst(6);
-        lld1.addFirst(7);
+        lld1.addLast(0);
+        lld1.addLast(1);
+        lld1.addLast(2);
+        lld1.addLast(3);
+        lld1.addLast(4);
+        lld1.addLast(5);
+        lld1.addLast(6);
+        lld1.addLast(7);
+        lld1.addLast(8);
+
 //        lld1.addLast(8);
 //        lld1.addLast(9);
         int x1 = lld1.removeFirst();
@@ -152,11 +154,31 @@ public class ArrayDequeTest {
 
         ArrayDeque<Integer> lld1 = new ArrayDeque<Integer>();
         // should be empty
-        boolean passed = checkEmpty(true, lld1.isEmpty());
-
-        lld1.addFirst(10);
         lld1.addFirst(0);
+        lld1.get(0);
+        lld1.removeLast();
+        lld1.addFirst(3);
+        lld1.removeFirst();
+        lld1.addFirst(5);
+        lld1.removeFirst();
         lld1.addFirst(7);
+        lld1.addFirst(8);
+        lld1.addLast(9);
+        lld1.addLast(10);
+        lld1.addFirst(11);
+        lld1.get(0);
+        lld1.get(2);
+        lld1.addFirst(14);
+        lld1.get(5);
+        lld1.removeFirst();
+        lld1.addLast(17);
+        lld1.addLast(18);
+        lld1.printDeque();
+        lld1.addLast(19);
+        lld1.addLast(20);
+        lld1.addLast(21);
+        lld1.removeLast();
+        lld1.get(5);
 
 
         System.out.println(lld1.get(0));
@@ -167,8 +189,8 @@ public class ArrayDequeTest {
         System.out.println("Running tests.\n");
 //        addIsEmptySizeTest();
 //        addRemoveTest();
-//        getTest();
-        removeLastTest();
-        nullTest();
+        getTest();
+//        removeLastTest();
+//        nullTest();
     }
 }
