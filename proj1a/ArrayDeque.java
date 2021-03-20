@@ -98,7 +98,7 @@ public class ArrayDeque<T> {
 
     private void resize(int newSize) {
         /** nextFirst==nextLast means the deque is full, we need to enlarge.*/
-        if (fixIndex(nextFirst) >= fixIndex(nextLast - 1)) {
+        if (nextFirst >= nextLast - 1) {
             T[] newItems = (T[]) new Object[newSize];
             System.arraycopy(items, nextFirst + 1, newItems, 0, items.length - nextFirst - 1);
             System.arraycopy(items, 0, newItems, items.length - nextFirst - 1, nextFirst + 1);
