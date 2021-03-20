@@ -61,12 +61,12 @@ public class ArrayDequeTest {
         lld1.addLast("front");
         lld1.addLast("front");
         lld1.addLast("front");
-        lld1.removeFirst();
-        lld1.removeLast();
+        System.out.println(lld1.removeFirst());
+        System.out.println(lld1.removeLast());
 //        lld1.addFirst("front");
 //        lld1.addFirst("front");
 
-        System.out.println(lld1.get(7));
+//        System.out.println(lld1.get(7));
 
         System.out.println("Printing out deque: ");
         lld1.printDeque();
@@ -77,8 +77,9 @@ public class ArrayDequeTest {
 
     public static void removeLastTest() {
         ArrayDeque<Integer> lld1 = new ArrayDeque<Integer>();
-        lld1.addLast(0);
-//        lld1.removeLast();
+        lld1.addFirst(0);
+        lld1.addFirst(1);
+//        int x = lld1.removeLast();
         System.out.println(lld1.removeLast());
     }
 
@@ -122,9 +123,9 @@ public class ArrayDequeTest {
 
     public static void main(String[] args) {
         System.out.println("Running tests.\n");
-        addIsEmptySizeTest();
+//        addIsEmptySizeTest();
 //        addRemoveTest();
 //        getTest();
-//        removeLastTest();
+        removeLastTest();
     }
 }

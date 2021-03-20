@@ -48,10 +48,11 @@ public class ArrayDeque<T> {
             nextFirst = fixIndex(nextFirst);
             if (size <= items.length / 4 && items.length > 16) {
                 resize(items.length / 2);
+                return items[nextFirst + 1];
+            }   else {
+                return items[nextFirst];
             }
-            int position = nextFirst + 1;
-            position = fixIndex(position);
-            return items[position];
+
         }   else {
             return null;
         }
@@ -64,10 +65,10 @@ public class ArrayDeque<T> {
             nextLast = fixIndex(nextLast);
             if (size <= items.length / 4 && items.length > 16) {
                 resize(items.length / 2);
+                return items[nextLast - 1];
+            }   else {
+                return items[nextLast];
             }
-            int position = nextLast - 1;
-            position = fixIndex(position);
-            return items[position];
         }   else {
             return null;
         }
