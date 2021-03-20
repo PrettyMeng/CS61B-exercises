@@ -178,7 +178,7 @@ public class ArrayDequeTest {
         lld1.addLast(20);
         lld1.addLast(21);
         lld1.removeLast();
-        lld1.get(5);
+        int x = lld1.get(5);
 
 
         System.out.println(lld1.get(0));

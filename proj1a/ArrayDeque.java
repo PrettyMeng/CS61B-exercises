@@ -100,8 +100,9 @@ public class ArrayDeque<T> {
         /** nextFirst==nextLast means the deque is full, we need to enlarge.*/
         if (nextFirst >= nextLast - 1) {
             T[] newItems = (T[]) new Object[newSize];
-            System.arraycopy(items, nextFirst + 1, newItems, 0, items.length - nextFirst - 1);
-            System.arraycopy(items, 0, newItems, items.length - nextFirst - 1, nextFirst + 1);
+            int backLength = items.length - nextFirst - 1;
+            System.arraycopy(items, nextFirst + 1, newItems, 0, backLength);
+            System.arraycopy(items, 0, newItems, items.length - nextFirst - 1, size - backLength);
             nextLast = size;
             nextFirst = newSize - 1;
             items = newItems;
