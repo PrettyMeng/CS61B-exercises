@@ -59,13 +59,20 @@ public class ArrayDequeTest {
         lld1.addFirst("front");
         lld1.addFirst("front");
 
-
+        System.out.println(lld1.removeLast());
 
         System.out.println("Printing out deque: ");
         lld1.printDeque();
 
         printTestStatus(passed);
 
+    }
+
+    public static void removeLastTest() {
+        ArrayDeque<Integer> lld1 = new ArrayDeque<Integer>();
+        lld1.addLast(0);
+//        lld1.removeLast();
+        System.out.println(lld1.removeLast());
     }
 
     /** Adds an item, then removes an item, and ensures that dll is empty afterwards. */
@@ -108,8 +115,9 @@ public class ArrayDequeTest {
 
     public static void main(String[] args) {
         System.out.println("Running tests.\n");
-        addIsEmptySizeTest();
+//        addIsEmptySizeTest();
 //        addRemoveTest();
 //        getTest();
+        removeLastTest();
     }
 }

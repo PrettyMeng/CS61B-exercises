@@ -42,27 +42,35 @@ public class ArrayDeque<T> {
     }
 
     public T removeFirst() {
-        int targetPosition = nextFirst + 1;
-        targetPosition = fixIndex(targetPosition);
-        nextFirst++;
-        size--;
-        nextFirst = fixIndex(nextFirst);
-        if (size <= items.length / 4) {
-            resize(items.length / 2);
+        if (size > 0) {
+            int targetPosition = nextFirst + 1;
+            targetPosition = fixIndex(targetPosition);
+            nextFirst++;
+            size--;
+            nextFirst = fixIndex(nextFirst);
+            if (size <= items.length / 4 && items.length > 16) {
+                resize(items.length / 2);
+            }
+            return items[targetPosition];
+        }   else {
+            return null;
         }
-        return items[targetPosition];
     }
 
     public T removeLast() {
-        int targetPosition = nextLast - 1;
-        targetPosition = fixIndex(targetPosition);
-        nextLast--;
-        size--;
-        nextLast = fixIndex(nextLast);
-        if (size <= items.length / 4) {
-            resize(items.length / 2);
+        if (size > 0) {
+            int targetPosition = nextLast - 1;
+            targetPosition = fixIndex(targetPosition);
+            nextLast--;
+            size--;
+            nextLast = fixIndex(nextLast);
+            if (size <= items.length / 4 && items.length > 16) {
+                resize(items.length / 2);
+            }
+            return items[targetPosition];
+        }   else {
+            return null;
         }
-        return items[targetPosition];
     }
 
     public int size() {
