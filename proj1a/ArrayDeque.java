@@ -22,36 +22,34 @@ public class ArrayDeque<T> {
     }
 
     public void addFirst(T item) {
-        items[nextFirst] = item;
-        nextFirst--;
         size++;
-        nextFirst = fixIndex(nextFirst);
         if (size == items.length) {
             resize(size * 4);
         }
+        items[nextFirst] = item;
+        nextFirst--;
+        nextFirst = fixIndex(nextFirst);
     }
 
     public void addLast(T item) {
-        items[nextLast] = item;
-        nextLast++;
         size++;
-        nextLast = fixIndex(nextLast);
         if (size == items.length) {
             resize(size * 4);
         }
+        items[nextLast] = item;
+        nextLast++;
+        nextLast = fixIndex(nextLast);
     }
 
     public T removeFirst() {
         if (size > 0) {
-            int targetPosition = nextFirst + 1;
-            targetPosition = fixIndex(targetPosition);
-            nextFirst++;
             size--;
-            nextFirst = fixIndex(nextFirst);
             if (size <= items.length / 4 && items.length > 16) {
                 resize(items.length / 2);
             }
-            return items[targetPosition];
+            nextFirst++;
+            nextFirst = fixIndex(nextFirst);
+            return items[nextFirst];
         }   else {
             return null;
         }
@@ -59,15 +57,13 @@ public class ArrayDeque<T> {
 
     public T removeLast() {
         if (size > 0) {
-            int targetPosition = nextLast - 1;
-            targetPosition = fixIndex(targetPosition);
-            nextLast--;
             size--;
-            nextLast = fixIndex(nextLast);
             if (size <= items.length / 4 && items.length > 16) {
                 resize(items.length / 2);
             }
-            return items[targetPosition];
+            nextLast--;
+            nextLast = fixIndex(nextLast);
+            return items[nextLast];
         }   else {
             return null;
         }
