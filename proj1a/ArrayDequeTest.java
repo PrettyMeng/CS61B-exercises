@@ -52,17 +52,17 @@ public class ArrayDequeTest {
 
         lld1.addLast("back");
 
-        lld1.removeFirst();
-        lld1.removeFirst();
-        lld1.removeLast();
-        lld1.removeLast();
+//        lld1.removeFirst();
+//        lld1.removeFirst();
+//        lld1.removeLast();
+//        lld1.removeLast();
 
         lld1.addLast("front");
         lld1.addLast("front");
         lld1.addLast("front");
         lld1.addLast("front");
         lld1.removeFirst();
-        lld1.removeFirst();
+        lld1.removeLast();
 //        lld1.addFirst("front");
 //        lld1.addFirst("front");
 
