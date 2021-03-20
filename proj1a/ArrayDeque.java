@@ -23,21 +23,21 @@ public class ArrayDeque<T> {
 
     public void addFirst(T item) {
         size++;
+        items[nextFirst] = item;
+        nextFirst--;
         if (size == items.length) {
             resize(size * 4);
         }
-        items[nextFirst] = item;
-        nextFirst--;
         nextFirst = fixIndex(nextFirst);
     }
 
     public void addLast(T item) {
         size++;
+        items[nextLast] = item;
+        nextLast++;
         if (size == items.length) {
             resize(size * 4);
         }
-        items[nextLast] = item;
-        nextLast++;
         nextLast = fixIndex(nextLast);
     }
 
@@ -82,6 +82,7 @@ public class ArrayDeque<T> {
 
     public void printDeque() {
         int position = nextFirst + 1;
+        position = fixIndex(position);
         while (position != nextLast) {
             System.out.println(items[position]);
             position++;

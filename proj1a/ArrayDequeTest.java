@@ -37,7 +37,7 @@ public class ArrayDequeTest {
 
         boolean passed = checkEmpty(true, lld1.isEmpty());
 
-        lld1.addFirst("front");
+        lld1.addLast("front");
 
         // The && operator is the same as "and" in Python.
         // It's a binary operator that returns true if both arguments true, and false otherwise.
@@ -52,14 +52,14 @@ public class ArrayDequeTest {
 
         lld1.addLast("back");
 
-        lld1.addFirst("front");
-        lld1.addFirst("front");
-        lld1.addFirst("front");
-        lld1.addFirst("front");
-        lld1.addFirst("front");
-        lld1.addFirst("front");
+        lld1.addLast("front");
+        lld1.addLast("front");
+        lld1.addLast("front");
+        lld1.addLast("front");
+//        lld1.addFirst("front");
+//        lld1.addFirst("front");
 
-        System.out.println(lld1.removeLast());
+        System.out.println(lld1.get(7));
 
         System.out.println("Printing out deque: ");
         lld1.printDeque();
@@ -115,9 +115,9 @@ public class ArrayDequeTest {
 
     public static void main(String[] args) {
         System.out.println("Running tests.\n");
-//        addIsEmptySizeTest();
+        addIsEmptySizeTest();
 //        addRemoveTest();
 //        getTest();
-        removeLastTest();
+//        removeLastTest();
     }
 }
