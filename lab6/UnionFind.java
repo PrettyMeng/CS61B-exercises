@@ -11,7 +11,7 @@ public class UnionFind {
         parents = new int[n];
         Arrays.fill(parents, -1);
         sizes = new int[n];
-        Arrays.fill(parents, 1);
+        Arrays.fill(sizes, 1);
     }
 
     /* Throws an exception if v1 is not a valid index. */
@@ -48,21 +48,22 @@ public class UnionFind {
        vertex with itself or vertices that are already connected should not 
        change the sets but may alter the internal structure of the data. */
     public void union(int v1, int v2) {
-        if (sizes[v1] < sizes[v2]) {
+        if (sizes[v1] <= sizes[v2]) {
             parents[find(v1)] = find(v2);
         }   else {
             parents[find(v2)] = parents[find(v1)];
         }
+        int unionedSize = sizes[v1] + sizes[v2];
         // update sizes of v1
         int curNode = v1;
         while (curNode != -1) {
-            sizes[curNode] += sizes[v2];
+            sizes[curNode] = unionedSize;
             curNode = parents[curNode];
         }
         // update sizes of v2
         curNode = v2;
         while (curNode != -1) {
-            sizes[curNode] += sizes[v1];
+            sizes[curNode] = unionedSize;
             curNode = parents[curNode];
         }
     }
@@ -76,5 +77,6 @@ public class UnionFind {
             return find(parents[vertex]);
         }
     }
+
 
 }
