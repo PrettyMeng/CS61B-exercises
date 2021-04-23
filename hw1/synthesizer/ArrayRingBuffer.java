@@ -106,7 +106,7 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
         return new ArrayRingBufferIterator();
     }
 
-    public boolean contains(T item) {
+    private boolean contains(T item) {
         return Arrays.asList(rb).contains(item);
     }
 
