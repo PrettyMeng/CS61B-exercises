@@ -51,7 +51,7 @@ public class UnionFind {
         if (sizes[v1] <= sizes[v2]) {
             parents[find(v1)] = find(v2);
         }   else {
-            parents[find(v2)] = parents[find(v1)];
+            parents[find(v2)] = find(v1);
         }
         int unionedSize = sizes[v1] + sizes[v2];
         // update sizes of v1

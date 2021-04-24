@@ -25,8 +25,10 @@ public class BubbleGrid {
         }
         // 0 is the sentinel root
         for (int dartIdx = 0; dartIdx < darts.length; dartIdx++) {
-            // if hits the top row, nothing changes
-            if (darts[dartIdx][0] == 0) {
+            int dartRow = darts[dartIdx][0];
+            int dartCol = darts[dartIdx][1];
+            // if hits the top row or hit an empty space, nothing changes
+            if (dartRow == 0 || grid[dartRow][dartCol] == 0) {
                 hitNumbers[dartIdx] = 0;
                 continue;
             }
@@ -36,8 +38,8 @@ public class BubbleGrid {
                     uf.union(0, i + 1);
                 }
             }
-            for (int i = 1; i <= darts[dartIdx][0]; i ++) {
-                for (int j = 0; j <= darts[dartIdx][1]; j++) {
+            for (int i = 1; i <= dartRow; i ++) {
+                for (int j = 0; j <= dartCol; j++) {
                     // two side, just check the upward position
                     int upPos = (i-1) * numCols + j + 1;
                     int selfPos = i * numCols + j + 1;
@@ -46,7 +48,7 @@ public class BubbleGrid {
                         continue;
                     }
                     // middle, check the left position as well
-                    if (j != 0 && j != darts[dartIdx][1]) {
+                    if (j != 0 && j != dartCol) {
                         int leftPos = i * numCols + j;
                         if (uf.connected(0, leftPos) && grid[i][j] == 1) {
                             uf.union(0, selfPos);
