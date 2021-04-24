@@ -16,15 +16,16 @@ public class BubbleGrid {
         int[] hitNumbers = new int[darts.length];
         int numRows = grid.length;
         int numCols = grid[0].length;
-        int bubbleNum = 0;
-        // calculate the number of bubbles in the grid
-        for (int i = 0; i < grid.length; i++) {
-            for (int j = 0; j < grid[i].length; j++) {
-                bubbleNum += grid[i][j];
-            }
-        }
         // 0 is the sentinel root
         for (int dartIdx = 0; dartIdx < darts.length; dartIdx++) {
+            int bubbleNum = 0;
+            // calculate the number of bubbles in the grid, should be recalculated after every iteration
+            for (int i = 0; i < numRows; i++) {
+                for (int j = 0; j < numCols; j++) {
+                    bubbleNum += grid[i][j];
+                }
+            }
+            int[][] newGrid = new int[numRows][numCols];
             int dartRow = darts[dartIdx][0];
             int dartCol = darts[dartIdx][1];
             // if hits the top row or hit an empty space, nothing changes
@@ -35,29 +36,37 @@ public class BubbleGrid {
             UnionFind uf = new UnionFind(numRows * numCols + 1);
             for (int i = 0; i < numCols; i++) {
                 if (grid[0][i] == 1) {
-                    uf.union(0, i + 1);
+                    uf.union(i + 1, 0);
+                    newGrid[0][i] = 1;
                 }
             }
-            for (int i = 1; i <= dartRow; i ++) {
-                for (int j = 0; j <= dartCol; j++) {
-                    // two side, just check the upward position
-                    int upPos = (i-1) * numCols + j + 1;
-                    int selfPos = i * numCols + j + 1;
-                    if (uf.connected(0, upPos) && grid[i][j] == 1) {
-                        uf.union(0, selfPos);
-                        continue;
-                    }
-                    // middle, check the left position as well
-                    if (j != 0 && j != dartCol) {
-                        int leftPos = i * numCols + j;
-                        if (uf.connected(0, leftPos) && grid[i][j] == 1) {
-                            uf.union(0, selfPos);
+            for (int i = 1; i < numRows; i ++) {
+                for (int j = 0; j < numCols; j++) {
+                    // if it is not the hitting position, union with the rule
+                    if (!(i == dartRow && j == dartCol)) {
+                        // two side, just check the upward position
+                        int upPos = (i - 1) * numCols + j + 1;
+                        int selfPos = i * numCols + j + 1;
+                        if (uf.connected(0, upPos) && grid[i][j] == 1) {
+                            uf.union(selfPos, 0);
+                            newGrid[i][j] = 1;
+                            continue;
+                        }
+                        // middle, check the left position as well
+                        if (j != 0 && j != numCols - 1) {
+                            int leftPos = i * numCols + j;
+                            if (uf.connected(0, leftPos) && grid[i][j] == 1) {
+                                uf.union(selfPos, 0);
+                                newGrid[i][j] = 1;
+                            }
                         }
                     }
-
                 }
             }
-            hitNumbers[dartIdx] = bubbleNum - uf.sizeOf(0) + 1;
+            hitNumbers[dartIdx] = bubbleNum - (uf.sizeOf(0) - 1) - 1;
+
+            // update the grid
+            grid = newGrid;
 
         }
         return hitNumbers;
