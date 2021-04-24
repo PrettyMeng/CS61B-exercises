@@ -37,6 +37,13 @@ public class UnionFind {
         }
     }
 
+    private void updateSize(int newSize, int curNode) {
+        while (curNode != -1) {
+            sizes[curNode] = newSize;
+            curNode = parents[curNode];
+        }
+    }
+
     /* Returns true if nodes v1 and v2 are connected. */
     public boolean connected(int v1, int v2) {
         return find(v1) == find(v2);
@@ -57,18 +64,15 @@ public class UnionFind {
             parents[find(v2)] = find(v1);
         }
         int unionedSize = sizes[v1] + sizes[v2];
-        // update sizes of v1
-        int curNode = v1;
-        while (curNode != -1) {
-            sizes[curNode] = unionedSize;
-            curNode = parents[curNode];
+        // maintain the size
+        // now the root should be the same
+        assert find(v1) == find(v2);
+        for (int i = 0; i < parents.length; i++) {
+            if (parents[i] == find(v1)) {
+                updateSize(unionedSize, i);
+            }
         }
-        // update sizes of v2
-        curNode = v2;
-        while (curNode != -1) {
-            sizes[curNode] = unionedSize;
-            curNode = parents[curNode];
-        }
+
     }
 
     /* Returns the root of the set V belongs to. Path-compression is employed
