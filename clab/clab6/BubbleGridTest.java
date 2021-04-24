@@ -28,6 +28,12 @@ public class BubbleGridTest {
         int[] expected3 = {0, 0};
 
         validate(grid3, darts3, expected3);
+
+        int[][] grid4 = {{1, 0, 1}, {1, 1, 1}};
+        int[][] darts4 = {{0, 0}, {0, 2}, {1, 1}};
+        int[] expected4 = {0, 3, 0};
+
+        validate(grid4, darts4, expected4);
     }
 
     private void validate(int[][] grid, int[][] darts, int[] expected) {
