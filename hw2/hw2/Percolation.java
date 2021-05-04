@@ -44,7 +44,8 @@ public class Percolation {
         if (row == 0) {
             uf.union(pos2index(row, col), topSite);
         }
-        if (row == grid.length - 1) {
+        // take care of the problem of backwash
+        if (row == grid.length - 1 && uf.connected(pos2index(row, col), topSite)) {
             uf.union(pos2index(row, col), bottomSite);
         }
         for (int[] direction : DIRECTIONS) {
@@ -75,6 +76,11 @@ public class Percolation {
     // does the system percolate?
     public boolean percolates() {
         return uf.connected(topSite, bottomSite);
+    }
+
+    // use for unit testing (not required, but keep this here for the autograder)
+    public static void main(String[] args) {
+
     }
 
 }
