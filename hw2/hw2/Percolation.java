@@ -7,6 +7,7 @@ public class Percolation {
     private int[][] grid;
     // uf[N*N]: top site uf[N*N+1]: bottom site
     private WeightedQuickUnionUF uf;
+    private WeightedQuickUnionUF uf_check_full;
     private int topSite;
     private int bottomSite;
     private static final int[][] DIRECTIONS = {{0, 1}, {1, 0}, {-1, 0}, {0, -1}};
@@ -20,6 +21,7 @@ public class Percolation {
 
         grid = new int[N][N];
         uf = new WeightedQuickUnionUF(N*N + 2);
+        uf_check_full = new WeightedQuickUnionUF(N*N + 2);
         topSite = N * N;
         bottomSite = N * N + 1;
         numSites = 0;
@@ -43,9 +45,10 @@ public class Percolation {
         numSites += 1;
         if (row == 0) {
             uf.union(pos2index(row, col), topSite);
+            uf_check_full.union(pos2index(row, col), topSite);
         }
         // take care of the problem of backwash
-        if (row == grid.length - 1 && uf.connected(pos2index(row, col), topSite)) {
+        if (row == grid.length - 1) {
             uf.union(pos2index(row, col), bottomSite);
         }
         for (int[] direction : DIRECTIONS) {
@@ -53,6 +56,7 @@ public class Percolation {
             int newCol = col + direction[1];
             if (inArea(newRow, newCol) && grid[newRow][newCol] == 1) {
                 uf.union(pos2index(row, col), pos2index(newRow, newCol));
+                uf_check_full.union(pos2index(row, col), pos2index(newRow, newCol));
             }
         }
     }
@@ -65,7 +69,7 @@ public class Percolation {
     // is the site (row, col) full?
     public boolean isFull(int row, int col) {
         // check connectivity between the top site
-        return uf.connected(pos2index(row, col), topSite);
+        return uf_check_full.connected(pos2index(row, col), topSite);
     }
 
     // number of open sites
