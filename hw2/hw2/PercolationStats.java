@@ -7,6 +7,9 @@ public class PercolationStats {
     private int[] estimatedThresholds;
 
     public PercolationStats(int N, int T, PercolationFactory pf) {
+        if (T <= 0) {
+            throw new IllegalArgumentException("should simulate at least once!");
+        }
         estimatedThresholds = new int[T];
         for (int i = 0; i < T; i++) {
             Percolation p = pf.make(N);
@@ -17,7 +20,7 @@ public class PercolationStats {
                 p.open(randRow, randCol);
                 numSites++;
             }
-            estimatedThresholds[i] = numSites;
+            estimatedThresholds[i] = numSites / N / N;
         }
     }
 
