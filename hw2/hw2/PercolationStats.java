@@ -13,10 +13,14 @@ public class PercolationStats {
         estimatedThresholds = new int[T];
         for (int i = 0; i < T; i++) {
             Percolation p = pf.make(N);
+            int[][] openedSites = new int[N][N];
             while (!p.percolates()) {
                 int randRow = rand.nextInt(N);
                 int randCol = rand.nextInt(N);
-                p.open(randRow, randCol);
+                if (openedSites[randRow][randCol] == 0) {
+                    p.open(randRow, randCol);
+                    openedSites[randRow][randCol] = 1;
+                }
             }
             estimatedThresholds[i] = p.numberOfOpenSites() / N / N;
         }
@@ -43,11 +47,13 @@ public class PercolationStats {
 
     // low endpoint of 95% confidence interval
     public double confidenceLow() {
-        return mean() - (1.96 * Math.pow(stddev(), 0.5)) / Math.pow(estimatedThresholds.length, 0.5);
+        double std = Math.pow(stddev(), 0.5);
+        return mean() - (1.96 * std) / Math.pow(estimatedThresholds.length, 0.5);
     }
 
     // high endpoint of 95% confidence interval
     public double confidenceHigh() {
-        return mean() + (1.96 * Math.pow(stddev(), 0.5)) / Math.pow(estimatedThresholds.length, 0.5);
+        double std = Math.pow(stddev(), 0.5);
+        return mean() + (1.96 * std) / Math.pow(estimatedThresholds.length, 0.5);
     }
 }
