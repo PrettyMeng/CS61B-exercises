@@ -42,19 +42,19 @@ public class PercolationStats {
         for (double threshold : estimatedThresholds) {
             s += Math.pow((threshold - miu), 2);
         }
-        return s / (estimatedThresholds.length - 1);
+        return Math.pow(s / (estimatedThresholds.length - 1), 0.5);
     }
 
     // low endpoint of 95% confidence interval
     public double confidenceLow() {
-        double std = Math.pow(stddev(), 0.5);
+        double std = stddev();
         return mean() - (1.96 * std) / Math.pow(estimatedThresholds.length, 0.5);
     }
 
     // high endpoint of 95% confidence interval
     public double confidenceHigh() {
-        double std = Math.pow(stddev(), 0.5);
+        double std = stddev();
         return mean() + (1.96 * std) / Math.pow(estimatedThresholds.length, 0.5);
     }
-    
+
 }
