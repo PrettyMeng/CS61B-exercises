@@ -13,14 +13,12 @@ public class PercolationStats {
         estimatedThresholds = new int[T];
         for (int i = 0; i < T; i++) {
             Percolation p = pf.make(N);
-            int numSites = 0;
             while (!p.percolates()) {
                 int randRow = rand.nextInt(N);
                 int randCol = rand.nextInt(N);
                 p.open(randRow, randCol);
-                numSites++;
             }
-            estimatedThresholds[i] = numSites / N / N;
+            estimatedThresholds[i] = p.numberOfOpenSites() / N / N;
         }
     }
 
