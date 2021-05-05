@@ -3,14 +3,14 @@ import java.util.Random;
 
 public class PercolationStats {
     // perform T independent experiments on an N-by-N grid
-    private Random rand = new Random();
-    private int[] estimatedThresholds;
+    private static Random rand = new Random();
+    private double[] estimatedThresholds;
 
     public PercolationStats(int N, int T, PercolationFactory pf) {
         if (T <= 0) {
             throw new IllegalArgumentException("should simulate at least once!");
         }
-        estimatedThresholds = new int[T];
+        estimatedThresholds = new double[T];
         for (int i = 0; i < T; i++) {
             Percolation p = pf.make(N);
             int[][] openedSites = new int[N][N];
@@ -22,14 +22,14 @@ public class PercolationStats {
                     openedSites[randRow][randCol] = 1;
                 }
             }
-            estimatedThresholds[i] = p.numberOfOpenSites() / N / N;
+            estimatedThresholds[i] = (double) p.numberOfOpenSites() / (N * N);
         }
     }
 
     // sample mean of percolation threshold
     public double mean() {
         double s = 0;
-        for (int threshold : estimatedThresholds) {
+        for (double threshold : estimatedThresholds) {
             s += threshold;
         }
         return s / estimatedThresholds.length;
@@ -39,7 +39,7 @@ public class PercolationStats {
     public double stddev() {
         double miu = mean();
         double s = 0;
-        for (int threshold : estimatedThresholds) {
+        for (double threshold : estimatedThresholds) {
             s += Math.pow((threshold - miu), 2);
         }
         return s / (estimatedThresholds.length - 1);
@@ -56,4 +56,5 @@ public class PercolationStats {
         double std = Math.pow(stddev(), 0.5);
         return mean() + (1.96 * std) / Math.pow(estimatedThresholds.length, 0.5);
     }
+    
 }
