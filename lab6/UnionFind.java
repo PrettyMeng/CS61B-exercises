@@ -81,7 +81,8 @@ public class UnionFind {
         if (parents[vertex] == -1) {
             return vertex;
         } else {
-            return find(parents[vertex]);
+            parents[vertex] = find(parents[vertex]);
+            return parents[vertex];
         }
     }
 
