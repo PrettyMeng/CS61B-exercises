@@ -15,7 +15,11 @@ public class ExperimentHelper {
      *  N = 8, OIPL: 13
      */
     public static int optimalIPL(int N) {
-        return 0;
+        if (N == 1) {
+            return 0;
+        }
+        int max_depth = (int) (Math.log(N) / Math.log(2));
+        return optimalIPL(N - 1) + max_depth;
     }
 
     /** Returns the average depth for nodes in an optimal BST of
@@ -27,6 +31,20 @@ public class ExperimentHelper {
      * @return
      */
     public static double optimalAverageDepth(int N) {
-        return 0;
+        double oad = (double) optimalIPL(N) / (double) N;
+        return oad;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(optimalIPL(1));
+        System.out.println(optimalIPL(6));
+        System.out.println(optimalIPL(7));
+        System.out.println(optimalIPL(8));
+        System.out.println(optimalIPL(9));
+        System.out.println(optimalAverageDepth(1));
+        System.out.println(optimalAverageDepth(5));
+        System.out.println(optimalAverageDepth(8));
+
+
     }
 }
