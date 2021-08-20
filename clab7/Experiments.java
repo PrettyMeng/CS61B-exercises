@@ -7,6 +7,10 @@ import java.util.Random;
 
 /**
  * Created by hug.
+ * experiment2 and experiment3 omitted
+ * essentially it compares the tree height when deletion takes the rightMin or the leftMax
+ * if randomly, the height would become worse
+ * if taking rightMin consistently, the height would become better.
  */
 public class Experiments {
     public static void experiment1() {
