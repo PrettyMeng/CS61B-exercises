@@ -41,7 +41,7 @@ public class TestSimpleOomage {
          */
         Set<Integer> ooaSet = new HashSet<>();
         for (int i = 0; i <= 255; i += 5) {
-            for (int j = 0; j <= 255; j+= 5) {
+            for (int j = 0; j <= 255; j += 5) {
                 for (int k = 0; k <= 255; k += 5) {
                     int hash = new SimpleOomage(i, j, k).hashCode();
                     assertFalse(ooaSet.contains(hash));
@@ -72,7 +72,6 @@ public class TestSimpleOomage {
         assertTrue(hashSet.contains(ooA2));
     }
 
-    /* TODO: Uncomment this test after you finish haveNiceHashCodeSpread in OomageTestUtility */
     @Test
     public void testRandomOomagesHashCodeSpread() {
         List<Oomage> oomages = new ArrayList<>();
